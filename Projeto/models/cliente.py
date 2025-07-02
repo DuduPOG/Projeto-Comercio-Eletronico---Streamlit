@@ -1,5 +1,5 @@
 import json
-from models.Modelo import Modelo
+from models.Modelo import CRUD
 
 class Cliente:
 
@@ -69,7 +69,7 @@ class Cliente:
     def __str__(self):
         return f"{self.__id} - {self.__nome} - {self.__email} - {self.__fone}"
 
-class Clientes(Modelo):
+class Clientes(CRUD):
 
     @classmethod
     def abrir(cls):

@@ -1,5 +1,5 @@
 import json
-from models.Modelo import Modelo
+from models.Modelo import CRUD
 
 class Login:
     def __init__(self, id, user, password):
@@ -44,7 +44,7 @@ class Login:
     def __str__(self):
         return f"{self.__id} - {self.__user} - {self.__password}"
 
-class Logins(Modelo):
+class Logins(CRUD):
 
     @classmethod
     def abrir(cls):

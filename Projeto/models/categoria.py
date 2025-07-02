@@ -1,5 +1,5 @@
 import json
-from models.Modelo import Modelo
+from models.Modelo import CRUD
 
 class Categoria:
 
@@ -34,7 +34,7 @@ class Categoria:
     def __str__(self):
         return f"{self.__id} - {self.__desc}"
 
-class Categorias(Modelo):
+class Categorias(CRUD):
 
     @classmethod
     def abrir(cls):

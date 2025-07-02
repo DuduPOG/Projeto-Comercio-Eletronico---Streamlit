@@ -1,5 +1,5 @@
 import json
-from models.Modelo import Modelo
+from models.Modelo import CRUD
 
 class Produto:
 
@@ -67,7 +67,7 @@ class Produto:
     def __str__(self):
         return f"{self.__id} - {self.__desc} - {self.__preco} - {self.__estoque} - {self.__id_categoria}"
 
-class Produtos(Modelo):
+class Produtos(CRUD):
 
     @classmethod
     def abrir(cls):

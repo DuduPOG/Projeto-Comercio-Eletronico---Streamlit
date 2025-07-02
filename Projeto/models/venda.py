@@ -1,6 +1,6 @@
 from datetime import datetime
 import json
-from models.Modelo import Modelo
+from models.Modelo import CRUD
 
 class Venda:
 
@@ -69,7 +69,7 @@ class Venda:
     def __str__(self):
         return f"{self.get_id()} - {self.get_data().strftime('%d/%m/%Y %H:%M')} - {self.get_carrinho()} - {self.get_total()} - {self.get_id_cliente()}"
 
-class Vendas(Modelo):
+class Vendas(CRUD):
 
     @classmethod
     def abrir(cls):

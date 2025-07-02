@@ -1,7 +1,7 @@
 import json
 from abc import ABC, abstractmethod
 
-class Modelo(ABC):
+class CRUD(ABC):
     
     objetos = []
 
