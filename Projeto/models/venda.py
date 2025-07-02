@@ -1,5 +1,6 @@
 from datetime import datetime
 import json
+from models.Modelo import Modelo
 
 class Venda:
 
@@ -68,48 +69,7 @@ class Venda:
     def __str__(self):
         return f"{self.get_id()} - {self.get_data().strftime('%d/%m/%Y %H:%M')} - {self.get_carrinho()} - {self.get_total()} - {self.get_id_cliente()}"
 
-class Vendas:
-
-    objetos = []
-
-    @classmethod
-    def inserir(cls, obj):
-        cls.abrir()
-        if cls.objetos:
-            maior = max(item.get_id() for item in cls.objetos)
-            obj.set_id(maior + 1)
-        else:
-            obj.set_id(0)
-        cls.objetos.append(obj)
-        cls.salvar()
-
-    @classmethod
-    def listar(cls):
-        cls.abrir()
-        return cls.objetos
-
-    @classmethod
-    def listar_id(cls, id):
-        cls.abrir()
-        for obj in cls.objetos:
-            if obj.get_id() == id:
-                return obj
-        return None
-
-    @classmethod
-    def atualizar(cls, obj):
-        x = cls.listar_id(obj.get_id())
-        if x != None: 
-            cls.objetos.remove(x)
-            cls.objetos.append(obj)
-            cls.salvar()
-
-    @classmethod
-    def excluir(cls, obj):
-        x = cls.listar_id(obj.get_id())
-        if x != None: 
-            cls.objetos.remove(x)
-            cls.salvar()
+class Vendas(Modelo):
 
     @classmethod
     def abrir(cls):

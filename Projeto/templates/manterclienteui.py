@@ -66,7 +66,7 @@ class ManterClienteUI:
         else:
             op = st.selectbox("Exclusão de cliente", clientes)
             if st.button("Excluir"):
-                View.cliente_excluir(op.id)
+                View.cliente_excluir(op.get_id())
                 st.success("Cliente excluído com sucesso")
                 time.sleep(2)
                 st.rerun()

@@ -20,7 +20,7 @@ class ManterCategoriaUI:
             st.write("Nenhuma categoria cadastrada")
         else:    
             dic = []
-            for obj in categorias: dic.append(obj.__dict__)
+            for obj in categorias: dic.append(obj.to_json())
             df = pd.DataFrame(dic)
             st.dataframe(df)
     
@@ -38,9 +38,9 @@ class ManterCategoriaUI:
             st.write("Nenhuma categoria cadastrada")
         else:
             op = st.selectbox("Atualização de cliente", categorias)
-            desc = st.text_input("Informe a nova descrição")
+            desc = st.text_input("Informe a nova descrição", op.get_desc())
             if st.button("Atualizar"):
-                View.categoria_atualizar(op.id, desc)
+                View.categoria_atualizar(op.get_id(), desc)
                 st.success("Categoria atualizada com sucesso")
                 time.sleep(2)
                 st.rerun()
@@ -52,7 +52,7 @@ class ManterCategoriaUI:
         else:
             op = st.selectbox("Exclusão de categoria", categorias)
             if st.button("Excluir"):
-                View.categoria_excluir(op.id)
+                View.categoria_excluir(op.get_id())
                 st.success("Categoria excluída com sucesso")
                 time.sleep(2)
                 st.rerun()

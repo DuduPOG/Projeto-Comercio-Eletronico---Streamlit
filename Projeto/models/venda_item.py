@@ -1,4 +1,5 @@
 import json
+from models.Modelo import Modelo
 
 class VendaItem:
 
@@ -66,48 +67,7 @@ class VendaItem:
     def __str__(self):
         return f"{self.get_id()} - {self.get_qtd()} - {self.get_preco()} - {self.get_id_venda()} - {self.get_id_produto()}"
 
-class VendaItens:
-
-    objetos = []
-
-    @classmethod
-    def inserir(cls, obj):
-        cls.abrir()
-        if cls.objetos:
-            maior = max(item.get_id() for item in cls.objetos)
-            obj.set_id(maior + 1)
-        else:
-            obj.set_id(0)
-        cls.objetos.append(obj)
-        cls.salvar()
-
-    @classmethod
-    def listar(cls):
-        cls.abrir()
-        return cls.objetos
-
-    @classmethod
-    def listar_id(cls, id):
-        cls.abrir()
-        for obj in cls.objetos:
-            if obj.get_id() == id:
-                return obj
-        return None
-
-    @classmethod
-    def atualizar(cls, obj):
-        x = cls.listar_id(obj.get_id())
-        if x != None: 
-            cls.objetos.remove(x)
-            cls.objetos.append(obj)
-            cls.salvar()
-
-    @classmethod
-    def excluir(cls, obj):
-        x = cls.listar_id(obj.get_id())
-        if x != None: 
-            cls.objetos.remove(x)
-            cls.salvar()
+class VendaItens(Modelo):
 
     @classmethod
     def abrir(cls):

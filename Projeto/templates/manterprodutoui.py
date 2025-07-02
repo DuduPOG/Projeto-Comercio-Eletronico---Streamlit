@@ -20,34 +20,32 @@ class ManterProdutoUI:
             st.write("Nenhum produto cadastrado")
         else:    
             dic = []
-            for obj in produtos: dic.append(obj.__dict__)
+            for obj in produtos: dic.append(obj.to_json())
             df = pd.DataFrame(dic)
             st.dataframe(df)
 
     def inserir():
         nome = st.text_input("Informe o nome: ")
-        desc = st.text_input("Informe a descrição: ")
         preco = st.number_input("Informe seu preço: ")
         estoque = st.number_input("Informe o estoque: ")
-        id_categoria = st.selectbox("Selecione a categoria", View.categoria_listar())
+        categoria = st.selectbox("Selecione a categoria", View.categoria_listar())
         if st.button("Cadastrar"):
-            View.produto_inserir(nome, desc, preco, estoque, id_categoria)
+            View.produto_inserir(nome, preco, estoque, categoria.get_id_categoria())
             st.success("Produto inserido com sucesso")
             time.sleep(2)
             st.rerun()
 
     def atualizar():
-        produto = View.produto_listar()
-        if len(produto) == 0: 
+        produtos = View.produto_listar()
+        if len(produtos) == 0: 
             st.write("Nenhum produto cadastrado")
         else:
-            op = st.selectbox("Atualização de cliente")
-            nome = st.text_input("Informe o novo nome")
-            preco = st.number_input("Informe o novo preço")
-            estoque = st.number_input("Informe o novo estoque")
-            id_categoria = st.selectbox("Selecione a categoria", View.categoria_listar(), index=op.id_categoria)
+            op = st.selectbox("Atualização de cliente", produtos)
+            nome = st.text_input("Informe o novo nome", op.get_desc())
+            preco = st.number_input("Informe o novo preço", op.get_preco())
+            estoque = st.number_input("Informe o novo estoque", op.get_estoque())
             if st.button("Atualizar"):
-                View.produto_atualizar(op.id, nome, preco, estoque, id_categoria)
+                View.produto_atualizar(op.get_id(), nome, preco, estoque, op.get_id_categoria())
                 st.success("Produto atualizado com sucesso")
                 time.sleep(2)
                 st.rerun()
@@ -59,7 +57,7 @@ class ManterProdutoUI:
         else:
             op = st.selectbox("Exclusão de produto", produtos)
             if st.button("Excluir"):
-                View.produto_excluir(op.id)
+                View.produto_excluir(op.get_id())
                 st.success("Produto excluído com sucesso")
                 time.sleep(2)
                 st.rerun()
