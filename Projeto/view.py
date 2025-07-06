@@ -4,6 +4,7 @@ from models.venda import Venda, Vendas
 from models.venda_item import VendaItem, VendaItens
 from models.cliente import Cliente, Clientes
 from models.categoria import Categoria, Categorias
+from models.entregador import Entregador, Entregadores
 
 class View:
 
@@ -78,7 +79,6 @@ class View:
         if produto is not None:
             Produtos.excluir(produto)
         else:
-            print("Produto não encontrado!")
             return
 
     @staticmethod
@@ -91,15 +91,35 @@ class View:
         return Produtos.listar()
     
     @staticmethod
+    def entregador_inserir(id, nome, email, fone, senha):
+        e = Entregador(id, nome, email, fone, senha)
+        Entregadores.inserir(e)
+
+    @staticmethod
+    def entregador_excluir(id):
+        entregador = Entregadores.listar_id(id)
+        if entregador is not None:
+            Entregadores.excluir(entregador)
+        else:
+            return
+        
+    @staticmethod
+    def entregador_atualizar(id, nome, email, fone, senha):
+        e = Entregador(id, nome, email, fone, senha)
+        Entregadores.atualizar(e)
+
+    @staticmethod
+    def entregador_listar():
+        return Entregadores.listar()
+
+    @staticmethod
     def iniciar_carrinho():
         carrinho = Venda(0)
         Vendas.inserir(carrinho)
-        print("\nCarrinho iniciado com sucesso!")
         return carrinho
     
     @staticmethod
     def listar_carrinho():
-        print("Estas são todas as Vendas:")
         for c in Vendas.listar():
             print(c)
     
@@ -124,7 +144,6 @@ class View:
     def inserir_no_carrinho(carrinho, id_produto, qtd):
         produto = Produtos.listar_id(id_produto)
         if produto is None:
-            print("Produto não encontrado!")
             return
         preco = float(produto.get_preco())
         vi = VendaItem(0, qtd, preco)
@@ -163,7 +182,6 @@ class View:
             produto.set_preco(novo_preco)
             Produtos.atualizar(produto)
         else:
-            print("Produto não encontrado!")
             return
 
     pass

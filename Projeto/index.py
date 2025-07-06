@@ -3,6 +3,7 @@ from view import View
 from templates.mantercategoriaui import ManterCategoriaUI
 from templates.manterclienteui import ManterClienteUI
 from templates.manterprodutoui import ManterProdutoUI
+from templates.manterentregadorui import ManterEntregadorUI
 from templates.loginUI import LoginUI
 
 class IndexUI:
@@ -13,13 +14,24 @@ class IndexUI:
         #if op == "Abrir Conta": AbrirContaUI.main()
 
     def menu_cliente():
-        op = st.sidebar.selectbox("Menu", ["Listar Produtos", "Adicionar Produto no Carrinho", "Ver Carrinho", "Fechar Pedido", "Ver Meus Pedidos"])
+        op = st.sidebar.selectbox("Menu", ["Listar Produtos", "Adicionar Produto no Carrinho", "Ver Carrinho", 
+                                           "Fechar Pedido", "Ver Meus Pedidos"])
 
     def menu_admin():            
-        op = st.sidebar.selectbox("Menu", ["Cadastro de Categorias", "Cadastro de Clientes", "Cadastro de Produtos", "Listagem de Vendas"])
-        if op == "Cadastro de Categorias": ManterCategoriaUI.main()
-        if op == "Cadastro de Clientes": ManterClienteUI.main()
-        if op == "Cadastro de Produtos": ManterProdutoUI.main()
+        op = st.sidebar.selectbox("Menu", ["Cadastro de Categorias", "Cadastro de Clientes", 
+                                "Cadastro de Produtos", "Cadastro de Entregadores", "Listagem de Vendas"])
+        
+        if op == "Cadastro de Categorias":
+            ManterCategoriaUI.main()
+
+        if op == "Cadastro de Clientes":
+            ManterClienteUI.main()
+
+        if op == "Cadastro de Produtos":
+            ManterProdutoUI.main()
+            
+        if op == "Cadastro de Entregadores":
+            ManterEntregadorUI.main()
 
     def sair_do_sistema():
         if st.sidebar.button("Sair"):
