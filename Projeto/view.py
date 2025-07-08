@@ -176,7 +176,7 @@ class View:
     def listar_minhas_compras(cliente):
         for venda in Vendas.listar():
             if venda.get_id_cliente() == cliente.get_id():
-                print(f"Venda ID: {venda.get_id()}, Total: R$ {venda.get_total():.2f}, Status: {'Finalizada' if not venda.get_carrinho() else 'Em aberto'}")
+                print(f"Carrinho ID: {venda.get_id()}, Total: R$ {venda.get_total():.2f}, Status: {'Finalizada' if not venda.get_carrinho() else 'Em aberto'}")
 
     @staticmethod
     def confirmar_compra(carrinho):
