@@ -119,7 +119,7 @@ class View:
         return carrinho
     
     @staticmethod
-    def listar_carrinho():
+    def listar_carrinho(id):
         for c in Vendas.listar():
             print(c)
     
@@ -139,7 +139,24 @@ class View:
         else:
             print("Você precisar criar um carrinho primeiro!")
             return
-    
+        
+    @staticmethod
+    def visualizar_meu_carrinho(carrinho):
+        itens_no_carrinho = [] 
+        if carrinho is not None:
+            for item_venda in VendaItens.listar():
+                if item_venda.get_id_venda() == carrinho.get_id():
+                    id_produto = item_venda.get_id_produto()
+                    produto = Produtos.listar_id(id_produto)
+                    if produto is not None:
+                         itens_no_carrinho.append({
+                            "id_item_venda": item_venda.get_id(), 
+                            "nome_produto": produto.get_desc(),
+                            "preco_unitario": produto.get_preco(),
+                            "quantidade": item_venda.get_qtd(),
+                            "subtotal_item": item_venda.get_qtd() * float(produto.get_preco())
+                        })
+        return itens_no_carrinho 
     @staticmethod
     def inserir_no_carrinho(carrinho, id_produto, qtd):
         produto = Produtos.listar_id(id_produto)

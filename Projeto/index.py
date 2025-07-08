@@ -5,6 +5,11 @@ from templates.manterclienteui import ManterClienteUI
 from templates.manterprodutoui import ManterProdutoUI
 from templates.manterentregadorui import ManterEntregadorUI
 from templates.loginUI import LoginUI
+from templates.Listar_produtosUI import Listar_produtos
+from templates.Adicionar_produtosUI import Adicionar_produtos
+from templates.Ver_carrinhoUI import Ver_carrinho
+from templates.Fechar_pedidoUI import Fechar_pedido
+from templates.Ver_pedidosUI import Ver_pedidos
 
 class IndexUI:
 
@@ -14,8 +19,27 @@ class IndexUI:
         #if op == "Abrir Conta": AbrirContaUI.main()
 
     def menu_cliente():
+        if "carrinho_atual" not in st.session_state:
+            st.session_state.carrinho_atual = View.iniciar_carrinho()
+        carrinho = st.session_state.carrinho_atual
+
         op = st.sidebar.selectbox("Menu", ["Listar Produtos", "Adicionar Produto no Carrinho", "Ver Carrinho", 
                                            "Fechar Pedido", "Ver Meus Pedidos"])
+        
+        if op == "Listar Produtos": Listar_produtos.main()
+
+        if op == "Adicionar Produto no Carrinho" : Adicionar_produtos.main(carrinho)
+
+        if op == "Ver Carrinho" : Ver_carrinho.main(carrinho)
+
+        if op == "Fechar Pedido" : Fechar_pedido.main(carrinho)
+
+        if op == "Ver Meus Pedidos" : Ver_pedidos.main(carrinho)
+
+
+     
+  
+        
 
     def menu_admin():            
         op = st.sidebar.selectbox("Menu", ["Cadastro de Categorias", "Cadastro de Clientes", 
