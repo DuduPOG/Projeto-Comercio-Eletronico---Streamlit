@@ -36,11 +36,6 @@ class IndexUI:
 
         if op == "Ver Meus Pedidos" : Ver_pedidos.main(carrinho)
 
-
-     
-  
-        
-
     def menu_admin():            
         op = st.sidebar.selectbox("Menu", ["Cadastro de Categorias", "Cadastro de Clientes", 
                                 "Cadastro de Produtos", "Cadastro de Entregadores", "Listagem de Vendas"])
