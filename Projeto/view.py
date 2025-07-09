@@ -191,6 +191,12 @@ class View:
                 if produto is not None:
                     produto.set_estoque(produto.get_estoque() - item.get_qtd())
                     Produtos.atualizar(produto)
+        
+    @staticmethod
+    def meus_carrinhos_ler(carrinho):
+        pedidos = []
+        pedidos.append(carrinho)
+        return carrinho
 
     @staticmethod
     def produto_reajustar_preco(produto, novo_preco):
