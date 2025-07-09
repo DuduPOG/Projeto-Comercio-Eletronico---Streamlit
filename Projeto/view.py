@@ -82,8 +82,8 @@ class View:
             return
 
     @staticmethod
-    def produto_atualizar(id, nome, preco, desc, id_categoria):
-        p = Produto(id, nome, preco, desc, id_categoria)
+    def produto_atualizar(id, desc, preco, estoque, id_categoria):
+        p = Produto(id, desc, preco, estoque, id_categoria)
         Produtos.atualizar(p)
 
     @staticmethod
@@ -157,6 +157,7 @@ class View:
                             "subtotal_item": item_venda.get_qtd() * float(produto.get_preco())
                         })
         return itens_no_carrinho 
+    
     @staticmethod
     def inserir_no_carrinho(carrinho, id_produto, qtd):
         produto = Produtos.listar_id(id_produto)

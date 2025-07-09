@@ -1,15 +1,18 @@
 import streamlit as st
 from view import View
-from templates.mantercategoriaui import ManterCategoriaUI
-from templates.manterclienteui import ManterClienteUI
-from templates.manterprodutoui import ManterProdutoUI
-from templates.manterentregadorui import ManterEntregadorUI
+from templates.Menu_Admin.mantercategoriaui import ManterCategoriaUI
+from templates.Menu_Admin.manterclienteui import ManterClienteUI
+from templates.Menu_Admin.manterprodutoui import ManterProdutoUI
+from templates.Menu_Admin.reajustar_preco_produtos import Reajustar_PrecosUI
+from templates.Menu_Admin.manterentregadorui import ManterEntregadorUI
 from templates.loginUI import LoginUI
-from templates.Listar_produtosUI import Listar_produtos
-from templates.Adicionar_produtosUI import Adicionar_produtos
-from templates.Ver_carrinhoUI import Ver_carrinho
-from templates.Fechar_pedidoUI import Fechar_pedido
-from templates.Ver_pedidosUI import Ver_pedidos
+from templates.Menu_Cliente.Listar_produtosUI import Listar_produtos
+from templates.Menu_Cliente.Adicionar_produtosUI import Adicionar_produtos
+from templates.Menu_Cliente.Ver_carrinhoUI import Ver_carrinho
+from templates.Menu_Cliente.Fechar_pedidoUI import Fechar_pedido
+from templates.Menu_Cliente.Ver_pedidosUI import Ver_pedidos
+from templates.Menu_Entregador.listarentregasui import Listar_EntregasUI
+from templates.Menu_Entregador.confirmarentregaui import Confirmar_EntregaUI
 
 class IndexUI:
 
@@ -39,9 +42,16 @@ class IndexUI:
 
         if op == "Ver Meus Pedidos" : Ver_pedidos.main(cliente)
 
+    def menu_entregador():
+        op = st.sidebar.selectbox("Menu", ["Listar Minhas Entregas", "Confirmar Entrega"])
+        if op == "Listar Minhas Entregas":
+            Listar_EntregasUI.main()
+        if op == "Confirmar Entrega":
+            Confirmar_EntregaUI.main()
+
     def menu_admin():            
         op = st.sidebar.selectbox("Menu", ["Cadastro de Categorias", "Cadastro de Clientes", 
-                                "Cadastro de Produtos", "Cadastro de Entregadores", "Listagem de Vendas"])
+                                "Cadastro de Produtos", "Cadastro de Entregadores", "Reajustar Preços", "Listagem de Vendas"])
         
         if op == "Cadastro de Categorias":
             ManterCategoriaUI.main()
@@ -54,6 +64,9 @@ class IndexUI:
             
         if op == "Cadastro de Entregadores":
             ManterEntregadorUI.main()
+    
+        if op == "Reajustar Preços":
+            Reajustar_PrecosUI.main()
 
     def sair_do_sistema():
         if st.sidebar.button("Sair"):

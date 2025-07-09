@@ -4,12 +4,14 @@ from models.Modelo import CRUD
 
 class Venda:
 
-    def __init__(self, id):
+    def __init__(self, id, id_entregador):
         self.set_id(id)
         self.set_data(datetime.now())
         self.set_carrinho(True)
+        self.set_entrega(False)
         self.set_total(0)
         self.set_id_cliente(id_cliente=0)
+        self.set_id_entregador(id_entregador)
 
     def to_json(self):
         return {
@@ -47,6 +49,15 @@ class Venda:
     def get_carrinho(self):
         return self.__carrinho
 
+    def set_entrega(self, entrega):
+        if not isinstance(entrega, bool):
+            raise ValueError("Entrega deve ser um valor booleano")
+        else:
+            self.__entrega = entrega
+
+    def get_entrega(self):
+        return self.__entrega
+
     def set_total(self, total):
         if total < 0 or total == "":
             raise ValueError("Total não pode ser negativo nem vazio")
@@ -64,10 +75,21 @@ class Venda:
 
     def get_id_cliente(self):
         return int(self.__id_cliente)
+    
+    def set_id_entregador(self, id_entregador):
+        if id_entregador < 0 or id_entregador == "":
+            raise ValueError("ID do cliente não pode ser negativo nem vazio")
+        else:
+            self.__id_entregador = id_entregador
+
+    def get_id_entregador(self):
+        return self.__id_entregador
 
 
     def __str__(self):
-        return f"{self.get_id()} - {self.get_data().strftime('%d/%m/%Y %H:%M')} - {self.get_carrinho()} - {self.get_total()} - {self.get_id_cliente()}"
+        s += f"{self.get_id()} - {self.get_data().strftime('%d/%m/%Y %H:%M')} - {self.get_carrinho()}"
+        s +=f" - {self.get_entrega()} - {self.get_total()} - {self.get_id_cliente()} - {self.get_id_entregador()}"
+        return s
 
 class Vendas(CRUD):
 
@@ -81,6 +103,7 @@ class Vendas(CRUD):
                     c = Venda(dic["id"])
                     c.set_data(datetime.strptime(dic["data"], "%d/%m/%Y %H:%M"))
                     c.set_carrinho(dic["carrinho"])
+                    c.set_entrega(dic["entrega"])
                     c.set_total(dic["total"])
                     c.set_id_cliente(dic["id_cliente"])
                     cls.objetos.append(c)

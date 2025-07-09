@@ -30,7 +30,7 @@ class ManterProdutoUI:
         estoque = st.number_input("Informe o estoque: ")
         categoria = st.selectbox("Selecione a categoria", View.categoria_listar())
         if st.button("Cadastrar"):
-            View.produto_inserir(nome, preco, estoque, categoria.get_id_categoria())
+            View.produto_inserir(nome, preco, estoque, categoria.get_id())
             st.success("Produto inserido com sucesso")
             time.sleep(2)
             st.rerun()

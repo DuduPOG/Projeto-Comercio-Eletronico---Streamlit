@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 from view import View
-from templates.Ver_carrinhoUI import Ver_carrinho
+import time
+from Projeto.templates.Menu_Cliente.Ver_carrinhoUI import Ver_carrinho
 
 class Fechar_pedido:
 
@@ -33,5 +34,7 @@ class Fechar_pedido:
 
             if "carrinho_atual" in st.session_state:
                 del st.session_state.carrinho_atual
+
+            time.sleep(2)
                 
             st.rerun()  
