@@ -4,13 +4,13 @@ from models.Modelo import CRUD
 
 class Venda:
 
-    def __init__(self, id, id_entregador):
+    def __init__(self, id, id_entregador,id_cliente):
         self.set_id(id)
         self.set_data(datetime.now())
         self.set_carrinho(True)
         self.set_entrega(False)
         self.set_total(0)
-        self.set_id_cliente(id_cliente=0)
+        self.set_id_cliente(id_cliente)
         self.set_id_entregador(id_entregador)
 
     def to_json(self):
@@ -18,8 +18,10 @@ class Venda:
             "id": self.get_id(),
             "data": self.get_data().strftime("%d/%m/%Y %H:%M"),
             "carrinho": self.get_carrinho(),
+            "entrega": self.get_entrega(),
             "total": self.get_total(),
-            "id_cliente": self.get_id_cliente()
+            "id_cliente": self.get_id_cliente(),
+            "id_entregador": self.get_id_entregador()
         }
 
     def set_id(self, id):
@@ -100,12 +102,13 @@ class Vendas(CRUD):
             with open("vendas.json", mode="r") as arquivo:
                 s = json.load(arquivo)
                 for dic in s: 
-                    c = Venda(dic["id"])
+                    c = Venda(dic["id"],1)
                     c.set_data(datetime.strptime(dic["data"], "%d/%m/%Y %H:%M"))
                     c.set_carrinho(dic["carrinho"])
                     c.set_entrega(dic["entrega"])
                     c.set_total(dic["total"])
                     c.set_id_cliente(dic["id_cliente"])
+                    c.set_id_entregador(dic["id_entregador"])
                     cls.objetos.append(c)
         except (FileNotFoundError, json.JSONDecodeError):
             pass

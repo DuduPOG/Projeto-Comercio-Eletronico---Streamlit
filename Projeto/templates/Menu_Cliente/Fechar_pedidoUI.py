@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
 from view import View
+from models.venda import Vendas
 
 class Fechar_pedido:
 
     @staticmethod
-    def main(carrinho):
+    def main(carrinho,id_cliente):
         st.write("Resumo do seu pedido antes de finalizar:")
 
         st.header("Este é o seu carrinho:")
@@ -26,14 +27,15 @@ class Fechar_pedido:
             st.dataframe(df)
 
         if st.button("Confirmar e Fechar Pedido?"):
-               
-            st.success("Pedido finalizado com sucesso!")
+            #atualizar os atributos do carrinho
             carrinho.set_carrinho(False)
+            carrinho.set_id_cliente(id_cliente)
+            # atualizar o carrinho atual
+            View.carrinho_atualizar(carrinho, id_cliente)
+            # atualizar a venda no arquivo JSON     
+            Vendas.atualizar(carrinho)
 
             if "carrinho_atual" in st.session_state:
                 del st.session_state.carrinho_atual
-
-            id_cliente = st.session_state.get('cliente_id')
-            carrinho.set_id_cliente(id_cliente)
                 
             st.rerun()  

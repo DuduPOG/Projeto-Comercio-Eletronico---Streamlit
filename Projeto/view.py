@@ -113,8 +113,8 @@ class View:
         return Entregadores.listar()
 
     @staticmethod
-    def iniciar_carrinho():
-        carrinho = Venda(0)
+    def iniciar_carrinho(id_cliente):
+        carrinho = Venda(0,1,id_cliente)
         Vendas.inserir(carrinho)
         return carrinho
     
@@ -198,6 +198,14 @@ class View:
         pedidos = []
         pedidos.append(carrinho)
         return carrinho
+    
+    @staticmethod
+    def carrinho_atualizar(carrinho,id_cliente):
+        #criar um objeto Venda com o carrinho atual
+        c = Venda(carrinho.get_id(), 1)
+        c.set_carrinho(False)
+        c.set_id_cliente(id_cliente)
+        Vendas.atualizar(c)
 
     @staticmethod
     def produto_reajustar_preco(produto, novo_preco):

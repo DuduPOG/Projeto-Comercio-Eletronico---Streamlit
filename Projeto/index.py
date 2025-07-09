@@ -23,8 +23,9 @@ class IndexUI:
         #if op == "Abrir Conta": AbrirContaUI.main()
 
     def menu_cliente():
+        id_cliente = st.session_state.get('cliente_id')
         if "carrinho_atual" not in st.session_state:
-            st.session_state.carrinho_atual = View.iniciar_carrinho()
+            st.session_state.carrinho_atual = View.iniciar_carrinho(id_cliente)
         carrinho = st.session_state.carrinho_atual
         
         cliente = View.cliente_listar()
@@ -38,7 +39,7 @@ class IndexUI:
 
         if op == "Ver Carrinho" : Ver_carrinho.main(carrinho)
 
-        if op == "Fechar Pedido" : Fechar_pedido.main(carrinho)
+        if op == "Fechar Pedido" : Fechar_pedido.main(carrinho,id_cliente)
 
         if op == "Ver Meus Pedidos" : Ver_pedidos.main(cliente)
 
