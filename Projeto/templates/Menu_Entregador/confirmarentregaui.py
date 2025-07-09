@@ -20,6 +20,7 @@ class Confirmar_EntregaUI:
                 op = st.selectbox("Escolha uma entrega para ser confirmada", entregas)
                 if st.button("Confirmar"):
                     op.set_entrega(True)
+                    Vendas.atualizar(op)
                     st.success("Entrega confirmada com sucesso!")
                     time.sleep(2)
                     st.rerun()

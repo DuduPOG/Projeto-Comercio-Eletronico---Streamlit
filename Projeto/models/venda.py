@@ -4,11 +4,11 @@ from models.Modelo import CRUD
 
 class Venda:
 
-    def __init__(self, id, id_entregador,id_cliente):
+    def __init__(self, id, entrega, id_cliente, id_entregador):
         self.set_id(id)
         self.set_data(datetime.now())
         self.set_carrinho(True)
-        self.set_entrega(False)
+        self.set_entrega(entrega)
         self.set_total(0)
         self.set_id_cliente(id_cliente)
         self.set_id_entregador(id_entregador)
@@ -52,10 +52,14 @@ class Venda:
         return self.__carrinho
 
     def set_entrega(self, entrega):
-        if not isinstance(entrega, bool):
-            raise ValueError("Entrega deve ser um valor booleano")
-        else:
+        if entrega == True:
             self.__entrega = entrega
+        else:
+            entrega = False
+            if not isinstance(entrega, bool):
+                raise ValueError("Entrega deve ser um valor booleano")
+            else:
+                self.__entrega = entrega
 
     def get_entrega(self):
         return self.__entrega
@@ -89,9 +93,7 @@ class Venda:
 
 
     def __str__(self):
-        s += f"{self.get_id()} - {self.get_data().strftime('%d/%m/%Y %H:%M')} - {self.get_carrinho()}"
-        s +=f" - {self.get_entrega()} - {self.get_total()} - {self.get_id_cliente()} - {self.get_id_entregador()}"
-        return s
+        return f"{self.get_id()} - {self.get_data().strftime('%d/%m/%Y %H:%M')} - {self.get_carrinho()} - {self.get_entrega()} - {self.get_total()} - {self.get_id_cliente()} - {self.get_id_entregador()}"
 
 class Vendas(CRUD):
 
@@ -100,15 +102,9 @@ class Vendas(CRUD):
         cls.objetos = []
         try:
             with open("vendas.json", mode="r") as arquivo:
-                s = json.load(arquivo)
-                for dic in s: 
-                    c = Venda(dic["id"],1)
-                    c.set_data(datetime.strptime(dic["data"], "%d/%m/%Y %H:%M"))
-                    c.set_carrinho(dic["carrinho"])
-                    c.set_entrega(dic["entrega"])
-                    c.set_total(dic["total"])
-                    c.set_id_cliente(dic["id_cliente"])
-                    c.set_id_entregador(dic["id_entregador"])
+                c = json.load(arquivo)
+                for dic in c: 
+                    c = Venda(dic["id"], dic["entrega"], dic["id_cliente"], dic["id_entregador"])
                     cls.objetos.append(c)
         except (FileNotFoundError, json.JSONDecodeError):
             pass

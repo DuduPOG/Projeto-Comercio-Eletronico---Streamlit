@@ -1,1 +1,1 @@
-[{"id": 0, "data": "09/07/2025 14:04", "carrinho": true, "entrega": false, "total": 400.0, "id_cliente": 0, "id_entregador": 1}, {"id": 1, "data": "09/07/2025 14:04", "carrinho": true, "entrega": false, "total": 0.0, "id_cliente": 0, "id_entregador": 1}]
+[{"id": 1, "data": "09/07/2025 14:32", "carrinho": true, "entrega": true, "total": 0.0, "id_cliente": 0, "id_entregador": 1}, {"id": 0, "data": "09/07/2025 14:32", "carrinho": true, "entrega": true, "total": 0.0, "id_cliente": 0, "id_entregador": 1}]
