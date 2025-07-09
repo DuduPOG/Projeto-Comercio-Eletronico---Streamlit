@@ -7,8 +7,12 @@ class Listar_produtos():
     @staticmethod
     def main():
         st.header("Esses são todos os produtos:")
- 
-        produtos = View.produto_listar()           
+
+        try:
+            produtos = View.produto_listar()
+        except Exception as e:
+            st.error(f"Erro ao carregar produtos: {e}. Por favor, tente novamente mais tarde.")
+            return           
 
         if len(produtos) == 0: 
             st.write("Nenhum produto disponível")

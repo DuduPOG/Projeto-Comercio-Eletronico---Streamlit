@@ -29,10 +29,14 @@ class VendaItem:
         return int(self.__id)
 
     def set_qtd(self, qtd):
-        if qtd < 0 or qtd == "":
-            raise ValueError("Quantidade não pode ser negativa nem vazia")
-        else:
-            self.__qtd = qtd
+        try:
+            if qtd < 1 or qtd == "":
+                raise ValueError("Quantidade não pode ser negativa nem vazia")
+            else:
+                self.__qtd = qtd
+
+        except ValueError as ve:
+                st.error(f"Erro de Validação: {ve}")
 
     def get_qtd(self):
         return int(self.__qtd)

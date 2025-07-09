@@ -26,7 +26,7 @@ class IndexUI:
         id_cliente = st.session_state.get('cliente_id')
         if "carrinho_atual" not in st.session_state:
             st.session_state.carrinho_atual = View.iniciar_carrinho(id_cliente)
-        carrinho = st.session_state.carrinho_atual
+
         
         cliente = View.cliente_listar()
 
@@ -35,13 +35,13 @@ class IndexUI:
         
         if op == "Listar Produtos": Listar_produtos.main()
 
-        if op == "Adicionar Produto no Carrinho" : Adicionar_produtos.main(carrinho)
+        if op == "Adicionar Produto no Carrinho" : Adicionar_produtos.main(st.session_state.carrinho_atual)
 
-        if op == "Ver Carrinho" : Ver_carrinho.main(carrinho)
+        if op == "Ver Carrinho" : Ver_carrinho.main(st.session_state.carrinho_atual)
 
-        if op == "Fechar Pedido" : Fechar_pedido.main(carrinho,id_cliente)
+        if op == "Fechar Pedido" : Fechar_pedido.main(st.session_state.carrinho_atual ,id_cliente)
 
-        if op == "Ver Meus Pedidos" : Ver_pedidos.main(cliente)
+        if op == "Ver Meus Pedidos" : Ver_pedidos.main()
 
     def menu_entregador():
         op = st.sidebar.selectbox("Menu", ["Listar Minhas Entregas", "Confirmar Entrega"])
