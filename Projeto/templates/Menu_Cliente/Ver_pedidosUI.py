@@ -6,16 +6,17 @@ import time
 class Ver_pedidos:
 
     @staticmethod
-    def main():
+    def main(carrinho):
+        #st.write(carrinho)
         st.header("Meus Pedidos")
-        id_cliente = st.session_state.get('cliente_id')
+        carrinho = st.session_state.get('carrinho_atual')
 
-        meus_carrinhos = View.visualizar_meu_carrinho(id_cliente)
+        meus_carrinhos = View.visualizar_meu_carrinho(carrinho)
 
-        if len(meu_carrinho) == 0: 
+        if len(meus_carrinhos) == 0: 
             st.write("Seu carrinho está vazio.")
         else: 
-            df = pd.DataFrame(meu_carrinho)
+            df = pd.DataFrame(meus_carrinhos)
 
             colunas_remover = ['id_item_venda'] 
             colunas_existentes_para_remover = [col for col in colunas_remover if col in df.columns]

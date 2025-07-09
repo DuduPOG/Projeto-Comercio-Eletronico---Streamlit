@@ -39,9 +39,9 @@ class IndexUI:
 
         if op == "Ver Carrinho" : Ver_carrinho.main(st.session_state.carrinho_atual)
 
-        if op == "Fechar Pedido" : Fechar_pedido.main(st.session_state.carrinho_atual ,id_cliente)
+        if op == "Fechar Pedido" : Fechar_pedido.main(st.session_state.carrinho_atual, id_cliente)
 
-        if op == "Ver Meus Pedidos" : Ver_pedidos.main()
+        if op == "Ver Meus Pedidos" : Ver_pedidos.main(st.session_state.carrinho_atual)
 
     def menu_entregador():
         op = st.sidebar.selectbox("Menu", ["Listar Minhas Entregas", "Confirmar Entrega"])

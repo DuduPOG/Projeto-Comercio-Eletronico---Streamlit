@@ -29,7 +29,7 @@ class Fechar_pedido:
         if st.button("Confirmar e Fechar Pedido?"):
             #atualizar os atributos do carrinho
             carrinho.set_carrinho(False)
-            carrinho.set_id_cliente(id_cliente)
+            #carrinho.set_id_cliente(id_cliente)
             # atualizar o carrinho atual
             View.carrinho_atualizar(carrinho, id_cliente)
             # atualizar a venda no arquivo JSON     

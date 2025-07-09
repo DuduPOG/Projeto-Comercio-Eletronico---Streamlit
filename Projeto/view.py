@@ -114,7 +114,7 @@ class View:
 
     @staticmethod
     def iniciar_carrinho(id_cliente):
-        carrinho = Venda(0,False,id_cliente,1)
+        carrinho = Venda(0, True, False, id_cliente, 1)
         Vendas.inserir(carrinho)
         return carrinho
     
@@ -128,7 +128,7 @@ class View:
         pedidos = [] 
         for c in Vendas.listar():
             if c.get_id_cliente() == id :
-                itens_no_carrinho.append({
+                pedidos.append({
                     "id_carrinho": c.get_id(),
                     "total": c.get_total(),
                     "status": "Finalizada" if not c.get_carrinho() else "Em aberto",
@@ -154,13 +154,14 @@ class View:
         else:
             print("Você precisar criar um carrinho primeiro!")
             return
-        
+#Carrinho = st.session_state.carrinho_atual(id_cliente)
+#mexer aqui
     @staticmethod
-    def visualizar_meu_carrinho(Carrinho = st.session_state.carrinho_atual(id_cliente)):
+    def visualizar_meu_carrinho(Carrinho):
         itens_no_carrinho = [] 
         if Carrinho is not None:
-            for item_venda in VendaItens.listar():
-                if item_venda.get_id_venda() == Carrinho.get_id():
+            for item_venda in Vendas.listar():
+                if item_venda.get_id_cliente() == Carrinho.get_id():
                     id_produto = item_venda.get_id_produto()
                     produto = Produtos.listar_id(id_produto)
                     if produto is not None:
@@ -215,11 +216,11 @@ class View:
         return carrinho
     
     @staticmethod
-    def carrinho_atualizar(carrinho,id_cliente):
+    def carrinho_atualizar(carrinho, id_cliente):
         #criar um objeto Venda com o carrinho atual
-        c = Venda(carrinho.get_id(),False,id_cliente,1)
-        c.set_carrinho(False)
-        c.set_id_cliente(id_cliente)
+        c = Venda(carrinho.get_id(), False, False, id_cliente, 1)
+        #c.set_carrinho(False)
+        #c.set_id_cliente(id_cliente)
         Vendas.atualizar(c)
 
     @staticmethod

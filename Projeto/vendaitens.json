@@ -1,1 +1,1 @@
-[]
+[{"id": 0, "qtd": 1, "preco": 100.0, "id_venda": 1, "id_produto": 0}, {"id": 1, "qtd": 1, "preco": 100.0, "id_venda": 2, "id_produto": 0}, {"id": 2, "qtd": 1, "preco": 100.0, "id_venda": 3, "id_produto": 0}, {"id": 3, "qtd": 1, "preco": 100.0, "id_venda": 8, "id_produto": 0}]

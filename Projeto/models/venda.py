@@ -4,10 +4,10 @@ from models.Modelo import CRUD
 
 class Venda:
 
-    def __init__(self, id, entrega, id_cliente, id_entregador):
+    def __init__(self, id, carrinho, entrega, id_cliente, id_entregador):
         self.set_id(id)
         self.set_data(datetime.now())
-        self.set_carrinho(True)
+        self.set_carrinho(carrinho)
         self.set_entrega(entrega)
         self.set_total(0)
         self.set_id_cliente(id_cliente)
@@ -43,10 +43,14 @@ class Venda:
         return self.__data
 
     def set_carrinho(self, carrinho):
-        if not isinstance(carrinho, bool):
-            raise ValueError("Carrinho deve ser um valor booleano")
-        else:
+        if carrinho == False:
             self.__carrinho = carrinho
+        else:
+            carrinho = True
+            if not isinstance(carrinho, bool):
+                raise ValueError("Carrinho deve ser um valor booleano")
+            else:
+                self.__carrinho = carrinho
 
     def get_carrinho(self):
         return self.__carrinho
@@ -104,7 +108,7 @@ class Vendas(CRUD):
             with open("vendas.json", mode="r") as arquivo:
                 c = json.load(arquivo)
                 for dic in c: 
-                    c = Venda(dic["id"], dic["entrega"], dic["id_cliente"], dic["id_entregador"])
+                    c = Venda(dic["id"], dic["carrinho"], dic["entrega"], dic["id_cliente"], dic["id_entregador"])
                     cls.objetos.append(c)
         except (FileNotFoundError, json.JSONDecodeError):
             pass
