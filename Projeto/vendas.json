@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"id": 0, "data": "10/07/2025 13:52", "carrinho": false, "entrega": false, "total": 0.0, "id_cliente": 2, "id_entregador": 1}, {"id": 1, "data": "10/07/2025 13:52", "carrinho": false, "entrega": false, "total": 0.0, "id_cliente": 2, "id_entregador": 1}, {"id": 2, "data": "10/07/2025 13:52", "carrinho": false, "entrega": false, "total": 0.0, "id_cliente": 2, "id_entregador": 1}, {"id": 3, "data": "10/07/2025 13:52", "carrinho": false, "entrega": false, "total": 0.0, "id_cliente": 2, "id_entregador": 1}]
-=======
-[{"id": 0, "data": "10/07/2025 13:35", "carrinho": true, "entrega": false, "total": 0.0, "id_cliente": 2, "id_entregador": 1}, {"id": 1, "data": "10/07/2025 13:35", "carrinho": false, "entrega": false, "total": 0.0, "id_cliente": 2, "id_entregador": 1}, {"id": 2, "data": "10/07/2025 13:35", "carrinho": true, "entrega": false, "total": 0.0, "id_cliente": 2, "id_entregador": 1}, {"id": 3, "data": "10/07/2025 13:35", "carrinho": true, "entrega": false, "total": 300.0, "id_cliente": 2, "id_entregador": 1}, {"id": 5, "data": "10/07/2025 13:35", "carrinho": true, "entrega": false, "total": 0.0, "id_cliente": 2, "id_entregador": 1}, {"id": 4, "data": "10/07/2025 13:35", "carrinho": false, "entrega": true, "total": 1000.0, "id_cliente": 2, "id_entregador": 1}]
->>>>>>> 5e8087e85ddc52d24fdebf190b146a14de1edadb
+[]

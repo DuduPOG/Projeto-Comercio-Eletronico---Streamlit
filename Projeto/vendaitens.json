@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-[{"id": 0, "qtd": 4, "preco": 1500.0, "id_venda": 0, "id_produto": 2}, {"id": 1, "qtd": 7, "preco": 1500.0, "id_venda": 0, "id_produto": 2}, {"id": 2, "qtd": 7, "preco": 100.0, "id_venda": 1, "id_produto": 0}, {"id": 3, "qtd": 6, "preco": 1500.0, "id_venda": 2, "id_produto": 2}, {"id": 4, "qtd": 5, "preco": 100.0, "id_venda": 2, "id_produto": 0}, {"id": 5, "qtd": 7, "preco": 200.0, "id_venda": 3, "id_produto": 1}]
-=======
-[{"id": 0, "qtd": 5, "preco": 100.0, "id_venda": 0, "id_produto": 0}, {"id": 1, "qtd": 6, "preco": 200.0, "id_venda": 0, "id_produto": 1}, {"id": 2, "qtd": 5, "preco": 100.0, "id_venda": 1, "id_produto": 0}, {"id": 3, "qtd": 6, "preco": 100.0, "id_venda": 1, "id_produto": 0}, {"id": 4, "qtd": 3, "preco": 100.0, "id_venda": 3, "id_produto": 0}, {"id": 5, "qtd": 10, "preco": 100.0, "id_venda": 4, "id_produto": 0}]
->>>>>>> 5e8087e85ddc52d24fdebf190b146a14de1edadb
+[]

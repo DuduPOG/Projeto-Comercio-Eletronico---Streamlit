@@ -236,7 +236,7 @@ class View:
     @staticmethod
     def carrinho_atualizar(carrinho, id_cliente):
         #criar um objeto Venda com o carrinho atual
-        c = Venda(carrinho.get_id(), False, False, 1, id_cliente, 1)
+        c = Venda(carrinho.get_id(), False, False,carrinho.get_total(), id_cliente, 1)
         #c.set_carrinho(False)
         #c.set_id_cliente(id_cliente)
         Vendas.atualizar(c)
