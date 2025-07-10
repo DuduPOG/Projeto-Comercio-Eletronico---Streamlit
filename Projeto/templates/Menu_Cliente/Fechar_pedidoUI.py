@@ -11,7 +11,7 @@ class Fechar_pedido:
 
         st.header("Este é o seu carrinho:")
         
-        meu_carrinho = View.visualizar_meu_carrinho(carrinho) 
+        meu_carrinho = View.vizualizar_produtos(carrinho) 
 
         if len(meu_carrinho) == 0: 
             st.write("Seu carrinho está vazio.")

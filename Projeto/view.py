@@ -158,10 +158,27 @@ class View:
 #mexer aqui
     @staticmethod
     def visualizar_meu_carrinho(Carrinho):
-        itens_no_carrinho = [] 
+        carrinhos = [] 
         if Carrinho is not None:
-            for item_venda in Vendas.listar():
-                if item_venda.get_id_cliente() == Carrinho.get_id():
+            for venda in Vendas.listar():
+                if venda.get_id_cliente() == Carrinho.get_id_cliente():
+                    if venda is not None:
+                        carrinhos.append({
+                            "id": venda.get_id(), 
+                            "carrinho": venda.get_carrinho(),
+                            "entrega": venda.get_entrega(),
+                            "id_cliente": venda.get_id_cliente(),
+                            "total": venda.get_total(),
+                            "id_entregador": venda.get_id_entregador(),
+                        })
+        return carrinhos
+    
+    @staticmethod
+    def vizualizar_produtos(carrinho):
+        itens_no_carrinho = [] 
+        if carrinho is not None:
+            for item_venda in VendaItens.listar():
+                if item_venda.get_id_venda() == carrinho.get_id():
                     id_produto = item_venda.get_id_produto()
                     produto = Produtos.listar_id(id_produto)
                     if produto is not None:
