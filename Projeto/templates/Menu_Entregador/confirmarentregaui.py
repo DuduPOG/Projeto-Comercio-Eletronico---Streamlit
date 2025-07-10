@@ -16,7 +16,7 @@ class Confirmar_EntregaUI:
         entregas = 0
         entregas_lista = []
         for pedido in pedidos:
-            if pedido.get_carrinho() == False:
+            if pedido.get_carrinho() == False and pedido.get_entrega() == False:
                 entregas += 1
                 entregas_lista.append(pedido)
         if entregas == 0: 
