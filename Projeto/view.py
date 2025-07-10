@@ -114,7 +114,7 @@ class View:
 
     @staticmethod
     def iniciar_carrinho(id_cliente):
-        carrinho = Venda(0, True, False, id_cliente, 1)
+        carrinho = Venda(0, True, False, 0, id_cliente, 1)
         Vendas.inserir(carrinho)
         return carrinho
     
@@ -235,7 +235,10 @@ class View:
     
     @staticmethod
     def carrinho_atualizar(carrinho, id_cliente):
-        c = Venda(carrinho.get_id(), False, False, id_cliente, 1)
+        #criar um objeto Venda com o carrinho atual
+        c = Venda(carrinho.get_id(), False, False, 1, id_cliente, 1)
+        #c.set_carrinho(False)
+        #c.set_id_cliente(id_cliente)
         Vendas.atualizar(c)
 
     @staticmethod

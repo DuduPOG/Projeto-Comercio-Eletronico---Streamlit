@@ -12,12 +12,18 @@ class Confirmar_EntregaUI:
         Confirmar_EntregaUI.confirmacao()
 
     def confirmacao():
-        entregas = Vendas.listar()
-        if len(entregas) == 0: 
+        pedidos = Vendas.listar()
+        entregas = 0
+        entregas_lista = []
+        for pedido in pedidos:
+            if pedido.get_carrinho() == False and pedido.get_entrega() == False:
+                entregas += 1
+                entregas_lista.append(pedido)
+        if entregas == 0: 
             st.write("Nenhum pedido finalizado")
         else:
             try:
-                op = st.selectbox("Escolha uma entrega para ser confirmada", entregas)
+                op = st.selectbox("Escolha uma entrega para ser confirmada", entregas_lista)
                 if st.button("Confirmar"):
                     op.set_entrega(True)
                     Vendas.atualizar(op)
