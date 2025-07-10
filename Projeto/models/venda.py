@@ -4,12 +4,12 @@ from models.Modelo import CRUD
 
 class Venda:
 
-    def __init__(self, id, carrinho, entrega, id_cliente, id_entregador):
+    def __init__(self, id, carrinho, entrega, total, id_cliente, id_entregador):
         self.set_id(id)
         self.set_data(datetime.now())
         self.set_carrinho(carrinho)
         self.set_entrega(entrega)
-        self.set_total(0)
+        self.set_total(total)
         self.set_id_cliente(id_cliente)
         self.set_id_entregador(id_entregador)
 
@@ -95,6 +95,7 @@ class Venda:
     def get_id_entregador(self):
         return self.__id_entregador
 
+
     def __str__(self):
         return f"{self.get_id()} - {self.get_data().strftime('%d/%m/%Y %H:%M')} - {self.get_carrinho()} - {self.get_entrega()} - {self.get_total()} - {self.get_id_cliente()} - {self.get_id_entregador()}"
 
@@ -107,7 +108,7 @@ class Vendas(CRUD):
             with open("vendas.json", mode="r") as arquivo:
                 c = json.load(arquivo)
                 for dic in c: 
-                    c = Venda(dic["id"], dic["carrinho"], dic["entrega"], dic["id_cliente"], dic["id_entregador"])
+                    c = Venda(dic["id"], dic["carrinho"], dic["entrega"], dic["total"], dic["id_cliente"], dic["id_entregador"])
                     cls.objetos.append(c)
         except (FileNotFoundError, json.JSONDecodeError):
             pass

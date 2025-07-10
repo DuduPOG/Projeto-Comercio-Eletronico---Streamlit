@@ -12,13 +12,19 @@ class Listar_EntregasUI:
         Listar_EntregasUI.listar()
 
     def listar():
-        vendas = Vendas.listar()
-        if len(vendas) == 0: 
+        pedidos = Vendas.listar()
+        entregas = 0
+        entregas_lista = []
+        for pedido in pedidos:
+            if pedido.get_carrinho() == False:
+                entregas += 1
+                entregas_lista.append(pedido)
+        if entregas == 0: 
             st.write("Nenhum pedido finalizado")
         else:
             try:
                 dic = []
-                for obj in vendas: dic.append(obj.to_json())
+                for obj in entregas_lista: dic.append(obj.to_json())
                 df = pd.DataFrame(dic)
                 st.dataframe(df)
                 time.sleep(2)
