@@ -95,7 +95,6 @@ class Venda:
     def get_id_entregador(self):
         return self.__id_entregador
 
-
     def __str__(self):
         return f"{self.get_id()} - {self.get_data().strftime('%d/%m/%Y %H:%M')} - {self.get_carrinho()} - {self.get_entrega()} - {self.get_total()} - {self.get_id_cliente()} - {self.get_id_entregador()}"
 

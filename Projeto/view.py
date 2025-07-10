@@ -169,6 +169,7 @@ class View:
                             "entrega": venda.get_entrega(),
                             "id_cliente": venda.get_id_cliente(),
                             "total": venda.get_total(),
+                            "data": venda.get_data(),
                             "id_entregador": venda.get_id_entregador(),
                         })
         return carrinhos
