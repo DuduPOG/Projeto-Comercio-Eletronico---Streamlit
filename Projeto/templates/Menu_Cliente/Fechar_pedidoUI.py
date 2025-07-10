@@ -27,13 +27,8 @@ class Fechar_pedido:
             st.dataframe(df)
 
         if st.button("Confirmar e Fechar Pedido?"):
-            #atualizar os atributos do carrinho
-            carrinho.set_carrinho(False)
-            #carrinho.set_id_cliente(id_cliente)
-            # atualizar o carrinho atual
-            View.carrinho_atualizar(carrinho, id_cliente)
-            # atualizar a venda no arquivo JSON     
-            Vendas.atualizar(carrinho)
+           
+            View.carrinho_atualizar(carrinho, id_cliente) 
 
             if "carrinho_atual" in st.session_state:
                 del st.session_state.carrinho_atual
