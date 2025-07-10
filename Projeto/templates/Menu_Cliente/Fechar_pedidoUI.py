@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from view import View
 from models.venda import Vendas
+import time
 
 class Fechar_pedido:
 
@@ -30,7 +31,7 @@ class Fechar_pedido:
            
             View.carrinho_atualizar(carrinho, id_cliente) 
 
-            if "carrinho_atual" in st.session_state:
-                del st.session_state.carrinho_atual
-                
+            st.success("Pedido fechado com sucesso!")
+            time.sleep(2)
+
             st.rerun()  

@@ -6,13 +6,14 @@ from templates.Menu_Admin.manterprodutoui import ManterProdutoUI
 from templates.Menu_Admin.reajustar_preco_produtos import Reajustar_PrecosUI
 from templates.Menu_Admin.manterentregadorui import ManterEntregadorUI
 from templates.loginUI import LoginUI
-from templates.Menu_Cliente.Listar_produtosUI import Listar_produtos
 from templates.Menu_Cliente.Adicionar_produtosUI import Adicionar_produtos
 from templates.Menu_Cliente.Ver_carrinhoUI import Ver_carrinho
 from templates.Menu_Cliente.Fechar_pedidoUI import Fechar_pedido
 from templates.Menu_Cliente.Ver_pedidosUI import Ver_pedidos
+from templates.Menu_Cliente.Comprar_novamenteUI import Comprar_novamente
 from templates.Menu_Entregador.listarentregasui import Listar_EntregasUI
 from templates.Menu_Entregador.confirmarentregaui import Confirmar_EntregaUI
+
 
 class IndexUI:
 
@@ -30,10 +31,8 @@ class IndexUI:
         
         cliente = View.cliente_listar()
 
-        op = st.sidebar.selectbox("Menu", ["Listar Produtos", "Adicionar Produto no Carrinho", "Ver Carrinho", 
-                                           "Fechar Pedido", "Ver Meus Pedidos"])
-        
-        if op == "Listar Produtos": Listar_produtos.main()
+        op = st.sidebar.selectbox("Menu", ["Adicionar Produto no Carrinho", "Ver Carrinho", 
+                                           "Fechar Pedido", "Ver Meus Pedidos","Comprar novamente", "Sair do Sistema"])
 
         if op == "Adicionar Produto no Carrinho" : Adicionar_produtos.main(st.session_state.carrinho_atual)
 
@@ -42,7 +41,9 @@ class IndexUI:
         if op == "Fechar Pedido" : Fechar_pedido.main(st.session_state.carrinho_atual, id_cliente)
 
         if op == "Ver Meus Pedidos" : Ver_pedidos.main(st.session_state.carrinho_atual)
-
+        
+        if op == "Comprar novamente": Comprar_novamente.main(id_cliente) 
+        
     def menu_entregador():
         op = st.sidebar.selectbox("Menu", ["Listar Minhas Entregas", "Confirmar Entrega"])
         if op == "Listar Minhas Entregas":
