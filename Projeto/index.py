@@ -29,10 +29,9 @@ class IndexUI:
             st.session_state.carrinho_atual = View.iniciar_carrinho(id_cliente)
 
         
-        cliente = View.cliente_listar()
 
         op = st.sidebar.selectbox("Menu", ["Adicionar Produto no Carrinho", "Ver Carrinho", 
-                                           "Fechar Pedido", "Ver Meus Pedidos","Comprar novamente", "Sair do Sistema"])
+                                           "Fechar Pedido", "Ver Meus Pedidos","Comprar novamente"])
 
         if op == "Adicionar Produto no Carrinho" : Adicionar_produtos.main(st.session_state.carrinho_atual)
 
@@ -42,7 +41,7 @@ class IndexUI:
 
         if op == "Ver Meus Pedidos" : Ver_pedidos.main(st.session_state.carrinho_atual)
         
-        if op == "Comprar novamente": Comprar_novamente.main(id_cliente) 
+        if op == "Comprar novamente": Comprar_novamente.main(st.session_state.carrinho_atual) 
         
     def menu_entregador():
         op = st.sidebar.selectbox("Menu", ["Listar Minhas Entregas", "Confirmar Entrega"])

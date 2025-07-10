@@ -1,12 +1,13 @@
 from datetime import datetime
+from pytz import utc, timezone
 import json
 from models.Modelo import CRUD
 
 class Venda:
 
-    def __init__(self, id, carrinho, entrega, total, id_cliente, id_entregador):
+    def __init__(self, id, data, carrinho, entrega, total, id_cliente, id_entregador):
         self.set_id(id)
-        self.set_data(datetime.now())
+        self.set_data(data)
         self.set_carrinho(carrinho)
         self.set_entrega(entrega)
         self.set_total(total)
@@ -34,6 +35,10 @@ class Venda:
         return int(self.__id)
 
     def set_data(self, data):
+        agora_utc = datetime.now(utc)
+        fuso_horario = timezone('America/Sao_Paulo')
+        agora_local = agora_utc.astimezone(fuso_horario)
+        data = agora_local
         if not isinstance(data, datetime):
             raise ValueError("Data deve ser um objeto datetime")
         else:
@@ -109,6 +114,7 @@ class Vendas(CRUD):
                 c = json.load(arquivo)
                 for dic in c: 
                     c = Venda(dic["id"], dic["carrinho"], dic["entrega"], dic["total"], dic["id_cliente"], dic["id_entregador"])
+                    c.set_data.strptime(dic["data"], "%d/%m/%Y %H:%M")
                     cls.objetos.append(c)
         except (FileNotFoundError, json.JSONDecodeError):
             pass

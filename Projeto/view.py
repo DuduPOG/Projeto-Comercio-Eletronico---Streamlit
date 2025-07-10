@@ -1,3 +1,5 @@
+from datetime import datetime
+from pytz import utc, timezone
 from models.cliente import Cliente, Clientes
 from models.produto import Produto, Produtos
 from models.venda import Venda, Vendas
@@ -7,7 +9,7 @@ from models.categoria import Categoria, Categorias
 from models.entregador import Entregador, Entregadores
 
 class View:
-
+    
     @staticmethod
     def cliente_autenticar(email, senha):
         for c in View.cliente_listar():
@@ -114,12 +116,13 @@ class View:
 
     @staticmethod
     def iniciar_carrinho(id_cliente):
-        carrinho = Venda(0, True, False, 0, id_cliente, 1)
+        data = datetime.now(utc)
+        carrinho = Venda(0, data, True, False, 0, id_cliente, 1)
         Vendas.inserir(carrinho)
         return carrinho
     
     @staticmethod
-    def listar_carrinho(id):
+    def listar_carrinho():
         for c in Vendas.listar():
             print(c)
 
@@ -236,7 +239,11 @@ class View:
     @staticmethod
     def carrinho_atualizar(carrinho, id_cliente):
         #criar um objeto Venda com o carrinho atual
-        c = Venda(carrinho.get_id(), False, False,carrinho.get_total(), id_cliente, 1)
+        agora_utc = datetime.now(utc)
+        fuso_horario = timezone('America/Sao_Paulo')
+        agora_local = agora_utc.astimezone(fuso_horario)
+        data = agora_local
+        c = Venda(carrinho.get_id(), data, False, False, carrinho.get_total(), id_cliente, 1)
         #c.set_carrinho(False)
         #c.set_id_cliente(id_cliente)
         Vendas.atualizar(c)
