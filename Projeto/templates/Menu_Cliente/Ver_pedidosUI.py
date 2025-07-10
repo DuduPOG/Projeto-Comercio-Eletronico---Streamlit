@@ -18,7 +18,7 @@ class Ver_pedidos:
         else: 
             df = pd.DataFrame(meus_carrinhos)
 
-            colunas_remover = ['id_item_venda'] 
+            colunas_remover = ['id_item_venda', 'id'] 
             colunas_existentes_para_remover = [col for col in colunas_remover if col in df.columns]
 
             if colunas_existentes_para_remover:
