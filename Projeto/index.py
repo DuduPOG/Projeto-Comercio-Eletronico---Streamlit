@@ -5,7 +5,8 @@ from templates.Menu_Admin.manterclienteui import ManterClienteUI
 from templates.Menu_Admin.manterprodutoui import ManterProdutoUI
 from templates.Menu_Admin.reajustar_preco_produtos import Reajustar_PrecosUI
 from templates.Menu_Admin.manterentregadorui import ManterEntregadorUI
-from templates.loginUI import LoginUI
+from templates.Menu_Login.loginUI import LoginUI
+from templates.Menu_Login.Abrir_ContaUI import Abrir_Conta
 from templates.Menu_Cliente.Adicionar_produtosUI import Adicionar_produtos
 from templates.Menu_Cliente.Ver_carrinhoUI import Ver_carrinho
 from templates.Menu_Cliente.Fechar_pedidoUI import Fechar_pedido
