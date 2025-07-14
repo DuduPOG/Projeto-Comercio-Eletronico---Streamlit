@@ -113,8 +113,7 @@ class Vendas(CRUD):
             with open("vendas.json", mode="r") as arquivo:
                 c = json.load(arquivo)
                 for dic in c: 
-                    c = Venda(dic["id"], dic["carrinho"], dic["entrega"], dic["total"], dic["id_cliente"], dic["id_entregador"])
-                    c.set_data.strptime(dic["data"], "%d/%m/%Y %H:%M")
+                    c = Venda(dic["id"], dic["data"], dic["carrinho"], dic["entrega"], dic["total"], dic["id_cliente"], dic["id_entregador"])
                     cls.objetos.append(c)
         except (FileNotFoundError, json.JSONDecodeError):
             pass
