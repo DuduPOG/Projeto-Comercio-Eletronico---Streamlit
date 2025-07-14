@@ -28,7 +28,7 @@ class Fechar_pedido:
             st.dataframe(df)
 
         if st.button("Confirmar e Fechar Pedido?"):
-           
+            View.confirmar_compra(st.session_state.carrinho_atual)
             View.carrinho_atualizar(carrinho, id_cliente) 
 
             st.success("Pedido fechado com sucesso!")
